@@ -129,7 +129,7 @@ A basic dashboard template JSON file (`dashboard-template.json`) is provided to 
 [MIT](https://mit-license.org/)
 
 ## Summary
-This guide shows Python webapp deployment, maintenance and monitoring approach based on Terraform and Gitub actions.
+This repo guide shows Python webapp deployment, maintenance and monitoring in Google Cloud Platform (GCP) leveraging Terraform and GitHub Actions.
 Happy Terraforming!
 
 [Ա](https://khachoyan.com) -
