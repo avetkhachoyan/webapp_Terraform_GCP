@@ -107,6 +107,7 @@ resource "google_sql_database_instance" "mysql_instance" {
   }
 }
 
+
 ### Application zip ###
 
 locals {
@@ -119,6 +120,22 @@ data "archive_file" "function_zip" {
   output_path = "${path.module}/webapp_upload/function.zip"
 }
 
+### Storage ###
+
+resource "google_storage_bucket" "zip_bucket" {
+  name     = "zip-bucket"
+  location = var.location
+  storage_class = "STANDARD"
+  versioning {
+    enabled = true
+  }
+}
+
+resource "google_storage_bucket_object" "function_zip" {
+  name   = "function.zip"
+  bucket = google_storage_bucket.zip_bucket.name
+  source = "webapp_upload/function.zip"
+}
 
 ### CloudFunction ###
 
