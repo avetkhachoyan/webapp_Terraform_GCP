@@ -1,6 +1,6 @@
 # Infrastructure as a Code with Terraform and GitHub Actions for Google Cloud Platform (GCP)
 
-This repository contains Terraform code, GitHub Actions rules and monitoring dashboard template to set up infrastructure on Google Cloud Platform (GCP) for automated deployment pipeline, database management using Google Cloud SQL, and basic monitoring using Google Cloud Monitoring.
+Repository contains Terraform code, GitHub Actions rules and monitoring dashboard template to set up infrastructure on Google Cloud Platform (GCP) for automated deployment pipeline, database management using Google Cloud SQL, and basic monitoring using Google Cloud Monitoring.
 
 ## Contents
 
