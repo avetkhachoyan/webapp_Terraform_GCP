@@ -108,18 +108,6 @@ resource "google_sql_database_instance" "mysql_instance" {
 }
 
 
-### Application zip ###
-
-locals {
-  function_source_directory = "sources"
-}
-
-data "archive_file" "function_zip" {
-  type        = "zip"
-  source_dir  = local.function_source_directory
-  output_path = "${path.module}/webapp_upload/function.zip"
-}
-
 ### Storage ###
 
 resource "google_storage_bucket" "zip_bucket" {
@@ -137,23 +125,6 @@ resource "google_storage_bucket_object" "function_zip" {
   source = "webapp_upload/function.zip"
 }
 
-### CloudFunction ###
-
-resource "google_cloudfunctions_function" "ph_clfunction" {
-  name              = var.function_name
-  runtime           = "python38"
-  entry_point       = "main"
-  trigger_http      = true
-  available_memory_mb = 256
-
-  source_archive_bucket = google_storage_bucket.function_bucket.name
-  source_archive_object = "webapp_upload/function.zip"
-
-  environment_variables = {
-    "MYSQL_CONNECTION_STRING" = google_secret_manager_secret_version.connection_string_value.secret_data
-  }
-}
-
 resource "google_storage_bucket" "function_bucket" {
   name     = "function-bucket-${random_string.bucket_suffix.result}"
   location = var.location
@@ -165,13 +136,23 @@ resource "random_string" "bucket_suffix" {
   upper   = false
 }
 
-resource "google_storage_bucket_object" "function_zip" {
-  name     = "function.zip"
-  bucket   = google_storage_bucket.function_bucket.name
 
-  source = data.archive_file.function_zip.output_path
+### CloudFunction ###
+
+resource "google_cloudfunctions_function" "ph_clfunction" {
+  name              = var.function_name
+  runtime           = "python38"
+  entry_point       = "main"
+  trigger_http      = true
+  available_memory_mb = 256
+
+  source_archive_bucket = google_storage_bucket.zip_bucket.name
+  source_archive_object = "webapp_upload/function.zip"
+
+  environment_variables = {
+    "MYSQL_CONNECTION_STRING" = google_secret_manager_secret_version.connection_string_value.secret_data
+  }
 }
-
 
 ### Monitoring ###
 
