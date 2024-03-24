@@ -1,0 +1,51 @@
+{
+    "widgets": [
+      {
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"cloudfunctions.googleapis.com/function/execution_count\" AND resource.type=\"cloud_function\""
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "STACKED_AREA"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "Invocation Count"
+          },
+          "xAxis": {
+            "label": "Time"
+          }
+        },
+        "title": "Cloud Function Invocation Count"
+      },
+      {
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"cloudfunctions.googleapis.com/function/execution_duration\" AND resource.type=\"cloud_function\""
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "Execution Duration (ms)"
+          },
+          "xAxis": {
+            "label": "Time"
+          }
+        },
+        "title": "Cloud Function Execution Duration"
+      }
+    ]
+  }
+  
