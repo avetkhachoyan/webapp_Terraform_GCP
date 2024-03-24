@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Medication List</h1>
+    <ul>
+        {% for medication in medications %}
+            <li>{{ medication.name }} - {{ medication.dosage }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="post">
+        <label for="medication_name">Medication Name:</label>
+        <input type="text" id="medication_name" name="name" placeholder="Enter medication name" required><br><br>
+        <label for="medication_dosage">Dosage:</label>
+        <input type="text" id="medication_dosage" name="dosage" placeholder="Enter dosage" required><br><br>
+        <button type="submit">Add Medication</button>
+    </form>
+</body>
+</html>
