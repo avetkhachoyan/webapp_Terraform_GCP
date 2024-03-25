@@ -93,8 +93,8 @@ resource "google_cloud_run_service" "mysql_database" {
 }
 
 resource "google_sql_database_instance" "mysql_instance" {
-  name     = "db-mysql-instance"
-  database_version   = "MYSQL_5_7"
+  name                = "db-mysql-instance"
+  database_version    = "MYSQL_5_7"
   deletion_protection = true
   encryption_key_name = google_kms_crypto_key.key
   settings {
@@ -111,8 +111,8 @@ resource "google_sql_database_instance" "mysql_instance" {
 ### Storage ###
 
 resource "google_storage_bucket" "zip_bucket" {
-  name     = "zip-bucket"
-  location = var.location
+  name          = "zip-bucket"
+  location      = var.location
   storage_class = "STANDARD"
   versioning {
     enabled = true
