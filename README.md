@@ -43,13 +43,13 @@ Before using this Terraform code, ensure you have the following prerequisites:
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/avetkhachoyan/webapp_Terraform_GCP.git
     ```
 
 2. Navigate to the repository directory:
 
     ```bash
-    cd <repository-directory>
+    cd webapp_Terraform_GCP
     ```
 
 3. Modify the Terraform configuration files (`provider.tf`, `main.tf`, `variables.tf`, etc.) to specify your project ID, region, Cloud Function details, Cloud SQL database details, and any other configuration options as needed.
